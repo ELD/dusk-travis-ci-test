@@ -1,20 +1,20 @@
 sudo: required
-language: php
 dist: trusty
+language: php
 
 php:
-    - 7.1
+  - '7.1'
 
 install:
-    - travis_retry composer install --no-interaction
+  - travis_retry composer install --no-interaction
 
 before_script: # refactor this to separate .sh file
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - ./vendor/laravel/dusk/bin/chromedriver-linux &
-    - cp .env.example .env
-    - php artisan serve &
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - ./vendor/laravel/dusk/bin/chromedriver-linux &
+  - cp .env.example .env
+  - php artisan serve &
 
 script:
-    - php artisan dusk
+  - php artisan dusk
 
